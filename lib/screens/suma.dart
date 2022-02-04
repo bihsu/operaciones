@@ -65,23 +65,33 @@ class FormularioSumaState extends State<FormularioSuma> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: MaterialButton(
-              onPressed: () {
-                if (_formSumaKey.currentState!.validate()) {
-                  _uno = int.parse(_numeroUnoController.text);
-                  _dos = int.parse(_numeroDosController.text);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("la suma es ${_uno + _dos}"),
-                    ),
-                  );
-                }
-                setState(() {
-                  _resultado = _uno + _dos;
-                });
-              },
-              child: const Text('Sumar'),
-              color: Colors.orangeAccent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                MaterialButton(
+                  onPressed: () {
+                    if (_formSumaKey.currentState!.validate()) {
+                      _uno = int.parse(_numeroUnoController.text);
+                      _dos = int.parse(_numeroDosController.text);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("la suma es ${_uno + _dos}"),
+                        ),
+                      );
+                    }
+                    setState(() {
+                      _resultado = _uno + _dos;
+                    });
+                  },
+                  child: const Text('Sumar'),
+                  color: Colors.orangeAccent,
+                ),
+                MaterialButton(
+                  child: const Text('Regresa papu'),
+                  color: Colors.redAccent,
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
             ),
           ),
           const Text(
